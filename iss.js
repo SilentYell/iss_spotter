@@ -22,6 +22,7 @@ const fetchMyIP = (callback) => {
 
 const fetchCoordsByIP = (ip, callback) => {
   needle.get(`https://ipwho.is/${ip}`, (error, response) => {
+
     if (error) {
       callback(error, null);
       return;
@@ -29,10 +30,11 @@ const fetchCoordsByIP = (ip, callback) => {
 
     const data = response.body;
     if (!data.success) {
-      callback(Error('An Error has occured'), null);
+      const msg = `Success status was ${data.success}. Server message says: ${data.message} when fetching for IP ${data.ip}`;
+      callback(Error(msg), null);
       return;
     }
-    
+
     const latitude = data.latitude;
     const longitude = data.longitude;
     callback(null, {latitude, longitude});

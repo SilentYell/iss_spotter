@@ -9,7 +9,7 @@ fetchMyIP((error, ip) => {
   
   fetchCoordsByIP(ip, (error, coords) => {
     if (error) {
-      console.log("Error. Failed to get Coordinates", error);
+      console.log("It didn't work!" , error);
       return;
     }
     console.log('Successfully collected coordinates', coords);
