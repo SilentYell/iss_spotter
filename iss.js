@@ -28,12 +28,13 @@ const fetchCoordsByIP = (ip, callback) => {
     }
 
     const data = response.body;
-    console.log(data);
     if (!data.success) {
       callback(Error('An Error has occured'), null);
       return;
     }
-
+    
+    const latitude = data.latitude;
+    const longitude = data.longitude;
     callback(null, {latitude, longitude});
   });
 };

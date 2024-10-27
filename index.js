@@ -12,6 +12,6 @@ fetchMyIP((error, ip) => {
       console.log("Error. Failed to get Coordinates", error);
       return;
     }
-    console.log('Successfully collected coordinates');
+    console.log('Successfully collected coordinates', coords);
   });
 });
