@@ -26,11 +26,6 @@ const nextISSTimesForMyLocation = function(callback) {
 //function to get ip address
 const fetchMyIP = (callback) => {
   needle.get('https://api.ipify.org?format=json', (error, response) => {
-    if (error) {
-      // request error
-      callback(error, null);
-      return;
-    }
     // check for non 200 status code outside the error check
     if (response.statusCode !== 200) {
       //storing status code error into a variable msg
@@ -47,13 +42,6 @@ const fetchMyIP = (callback) => {
 //function to get coordinates for the ip address
 const fetchCoordsByIP = (ip, callback) => {
   needle.get(`https://ipwho.is/${ip}`, (error, response) => {
-
-    // Check if there was an error with the request
-    if (error) {
-      callback(error, null);
-      return;
-    }
-
     const data = response.body;
     //check if response was successful
     if (!data.success) {
@@ -72,11 +60,6 @@ const fetchCoordsByIP = (ip, callback) => {
 const fetchISSFlyOverTimes = (coords, callback) => {
   needle.get(`https://iss-flyover.herokuapp.com/json/?lat=${coords.latitude}&lon=${coords.longitude}`, (error, response) => {
 
-    // Check if there was an error with the request
-    if (error) {
-      callback(error, null);
-      return;
-    }
     //check if response status is not 200. if not 200 then error message.
     if (response.statusCode !== 200) {
       const msg = `Status Code ${response.statusCode} when fetching ISS flyover times. Response: ${response.body}`;
