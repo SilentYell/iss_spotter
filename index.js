@@ -6,12 +6,12 @@ fetchMyIP((error, ip) => {
     return;
   }
   console.log('It worked! Returned IP:' , ip);
-});
-
-fetchCoordsByIP(ip, (error, coords) => {
-  if (error) {
-    console.log("Error. Failed to get Coordinates", error);
-    return;
-  }
-  console.log('Successfully collected coordinates');
+  
+  fetchCoordsByIP(ip, (error, coords) => {
+    if (error) {
+      console.log("Error. Failed to get Coordinates", error);
+      return;
+    }
+    console.log('Successfully collected coordinates');
+  });
 });

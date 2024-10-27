@@ -21,7 +21,21 @@ const fetchMyIP = (callback) => {
 };
 
 const fetchCoordsByIP = (ip, callback) => {
+  needle.get(`https://ipwho.is/${ip}`, (error, response) => {
+    if (error) {
+      callback(error, null);
+      return;
+    }
 
+    const data = response.body;
+    console.log(data);
+    if (!data.success) {
+      callback(Error('An Error has occured'), null);
+      return;
+    }
+
+    callback(null, {latitude, longitude});
+  });
 };
 
 module.exports = { fetchMyIP, fetchCoordsByIP };
