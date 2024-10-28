@@ -31,4 +31,13 @@ const fetchISSFlyOverTimes = (coords) => {
     });
 };
 
-module.exports = { fetchMyIP, fetchCoordsByIP, fetchISSFlyOverTimes };
+const nextISSTimesForMyLocation = () => {
+  return fetchMyIP()
+    .then((ip) => fetchCoordsByIP(ip))
+    .then((coords) => fetchISSFlyOverTimes(coords))
+    .then((passtimes) => {
+      return passtimes;
+    });
+};
+
+module.exports = { nextISSTimesForMyLocation };
